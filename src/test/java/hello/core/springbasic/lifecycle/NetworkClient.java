@@ -1,9 +1,6 @@
 package hello.core.springbasic.lifecycle;
 
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.InitializingBean;
-
-public class NetworkClient implements InitializingBean, DisposableBean {
+public class NetworkClient /* implements InitializingBean, DisposableBean */{
 
     private String url;
 
@@ -30,7 +27,18 @@ public class NetworkClient implements InitializingBean, DisposableBean {
         System.out.println("close " + url);
     }
 
+    public void init() {
+        System.out.println("NetworkClient.init");
+        connect();
+        call("초기화 연결 메시지");
+    }
 
+    public void close() {
+        System.out.println("NetworkClient.close");
+        disconnect();
+    }
+
+/*
     // 스프링을 이용한 초기화, 소멸 인터페이스는 사용하지 않는다
     // 의존관계 주입이 끝나면 수행해준다
     @Override
@@ -45,5 +53,5 @@ public class NetworkClient implements InitializingBean, DisposableBean {
     public void destroy() throws Exception {
         System.out.println("NetworkClient.destroy");
         disconnect();
-    }
+    }*/
 }
