@@ -20,13 +20,12 @@ public class LogDemoController {
     public String logDemo(HttpServletRequest request) {
         String requestUrl = request.getRequestURL().toString();
         myLogger.setRequestUrl(requestUrl);
+        myLogger.log("controller test");
 
-        myLogger.log( );
-
+        logDemoService.logic("testId");
+        return "OK";
     }
 }
-
-
 
 
 
